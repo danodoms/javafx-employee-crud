@@ -28,13 +28,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
       // Load the FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeeMgmt.fxml"));
         Parent root = loader.load();
         
         // Create a scene with the loaded FXML content
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("JavaFX Observable List");
+        primaryStage.setTitle("Manage Employee");
         primaryStage.setScene(scene);
         primaryStage.show();
     

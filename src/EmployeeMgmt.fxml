@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="779.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller=".EmployeeMgmtController">
+<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="779.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
     <stylesheets>
         <URL value="@employeemgmt.css" />
     </stylesheets>
    <children>
-      <TableView layoutX="207.0" layoutY="106.0" prefHeight="387.0" prefWidth="543.0">
+      <TableView fx:id="tableView" layoutX="207.0" layoutY="106.0" prefHeight="387.0" prefWidth="543.0">
         <columns>
-          <TableColumn prefWidth="57.0" text="ID" />
-          <TableColumn prefWidth="104.0" text="First Name" />
-            <TableColumn prefWidth="85.0" text="Middle Name" />
-            <TableColumn prefWidth="93.0" text="Last Name" />
-            <TableColumn prefWidth="92.0" text="Position" />
-            <TableColumn prefWidth="111.0" text="Shift" />
+          <TableColumn fx:id="col_id" prefWidth="57.0" text="ID" />
+          <TableColumn fx:id="col_fname" prefWidth="104.0" text="First Name" />
+            <TableColumn fx:id="col_mname" prefWidth="85.0" text="Middle Name" />
+            <TableColumn fx:id="col_lname" prefWidth="93.0" text="Last Name" />
+            <TableColumn fx:id="col_position" prefWidth="92.0" text="Position" />
+            <TableColumn fx:id="col_shift" prefWidth="111.0" text="Shift" />
         </columns>
       </TableView>
       <Label layoutX="207.0" layoutY="38.0" text="Manage Employee">

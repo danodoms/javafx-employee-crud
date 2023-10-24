@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="779.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller=".EmployeeMgmtController">
+    <stylesheets>
+        <URL value="@employeemgmt.css" />
+    </stylesheets>
+   <children>
+      <TableView layoutX="207.0" layoutY="106.0" prefHeight="387.0" prefWidth="543.0">
+        <columns>
+          <TableColumn prefWidth="57.0" text="ID" />
+          <TableColumn prefWidth="104.0" text="First Name" />
+            <TableColumn prefWidth="85.0" text="Middle Name" />
+            <TableColumn prefWidth="93.0" text="Last Name" />
+            <TableColumn prefWidth="92.0" text="Position" />
+            <TableColumn prefWidth="111.0" text="Shift" />
+        </columns>
+      </TableView>
+      <Label layoutX="207.0" layoutY="38.0" text="Manage Employee">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

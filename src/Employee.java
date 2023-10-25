@@ -12,25 +12,45 @@ public class Employee {
     private String fname;
     private String mname;
     private String lname;
+    private String sex;
+    private String position;
+    private String department;
+    private String shift;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public Employee(int id, String fname, String mname, String lname, String sex, String position, String department, String shift, int status) {
+        this.id = id;
+        this.fname = fname;
+        this.mname = mname;
+        this.lname = lname;
+        this.sex = sex;
+        this.position = position;
+        this.department = department;
+        this.shift = shift;
+        this.status = status;
+    }
+    private int status;
 
     public int getStatus() {
         return status;
     }
 
     public void setStatus(int status) {
-        this.status = status;
-    }
-    private String position;
-    private String shift;
-    private int status;
-
-    public Employee(int id, String fname, String mname, String lname, String position, String shift, int status) {
-        this.id = id;
-        this.fname = fname;
-        this.mname = mname;
-        this.lname = lname;
-        this.position = position;
-        this.shift = shift;
         this.status = status;
     }
 

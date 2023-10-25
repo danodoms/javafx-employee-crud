@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import java.sql.*;
+import javafx.scene.control.ChoiceBox;
 /**
  * FXML Controller class
  *
@@ -62,6 +63,16 @@ public class EmployeeMgmtController implements Initializable {
     private TableColumn<Employee, Integer> col_status;
     @FXML
     private TextField status_field;
+    @FXML
+    private TableColumn<Employee, String> col_sex;
+    @FXML
+    private ChoiceBox<String> shiftFilter_choiceBox;
+    @FXML
+    private TableColumn<Employee, String> col_department;
+    @FXML
+    private TextField sex_field;
+    @FXML
+    private TextField department_field;
 
     /**
      * Initializes the controller class.
@@ -75,7 +86,9 @@ public class EmployeeMgmtController implements Initializable {
         col_fname.setCellValueFactory(new PropertyValueFactory<Employee, String>("fname"));
         col_mname.setCellValueFactory(new PropertyValueFactory<Employee, String>("mname"));
         col_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("lname"));
+        col_sex.setCellValueFactory(new PropertyValueFactory<Employee, String>("sex"));
         col_position.setCellValueFactory(new PropertyValueFactory<Employee, String>("position"));
+        col_department.setCellValueFactory(new PropertyValueFactory<Employee, String>("department"));
         col_shift.setCellValueFactory(new PropertyValueFactory<Employee, String>("shift"));
         col_status.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("status"));
     }    
@@ -250,10 +263,11 @@ private void deactivate(ActionEvent event) {
                            rs.getString("fname"),
                           rs.getString("mname"),
                           rs.getString("lname"),
+                          rs.getString("sex"),
                           rs.getString("position"),
+                          rs.getString("department"),
                           rs.getString("shift"),
-                           rs.getInt("status")
-                          
+                           rs.getInt("status")                       
                   ));
             }
 

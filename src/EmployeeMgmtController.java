@@ -59,20 +59,25 @@ public class EmployeeMgmtController implements Initializable {
     private Button deleteBtn;
     @FXML
     private TextField searchField;
-    @FXML
-    private TableColumn<Employee, Integer> col_status;
-    @FXML
     private TextField status_field;
-    @FXML
-    private TableColumn<Employee, String> col_sex;
     @FXML
     private ChoiceBox<String> shiftFilter_choiceBox;
     @FXML
     private TableColumn<Employee, String> col_department;
     @FXML
-    private TextField sex_field;
-    @FXML
     private TextField department_field;
+    @FXML
+    private TableColumn<Employee, String> col_suffix;
+    @FXML
+    private TableColumn<Employee, String> col_privilege;
+    @FXML
+    private ChoiceBox<String> privilegeFilter_choiceBox;
+    @FXML
+    private ChoiceBox<String> departmentFilter_choiceBox;
+    @FXML
+    private TextField suffix_field;
+    @FXML
+    private TextField privilege_field;
 
     /**
      * Initializes the controller class.
@@ -86,23 +91,16 @@ public class EmployeeMgmtController implements Initializable {
         col_fname.setCellValueFactory(new PropertyValueFactory<Employee, String>("fname"));
         col_mname.setCellValueFactory(new PropertyValueFactory<Employee, String>("mname"));
         col_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("lname"));
-        col_sex.setCellValueFactory(new PropertyValueFactory<Employee, String>("sex"));
+        col_suffix.setCellValueFactory(new PropertyValueFactory<Employee, String>("suffix"));
         col_position.setCellValueFactory(new PropertyValueFactory<Employee, String>("position"));
         col_department.setCellValueFactory(new PropertyValueFactory<Employee, String>("department"));
         col_shift.setCellValueFactory(new PropertyValueFactory<Employee, String>("shift"));
-        col_status.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("status"));
+        col_privilege.setCellValueFactory(new PropertyValueFactory<Employee, String>("privilege"));
     }    
     
-//     ObservableList<Employee> data = FXCollections.observableArrayList(
-//                new Employee(1, "Dominador Jr.", "Garcia", "Dano", "Programmer", "Regular"),
-//                new Employee(2, "Nicole Ann", "Magno", "Cabantac", "UX Designer", "Regular"),
-//                new Employee(3, "Jessa Mae", "", "Roxas", "Systems Analyst", "Regular")
-//        );
-//     
-     
     
     
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/employeeact5to8";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/attendance_system_javafxcrud";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
     
@@ -117,35 +115,20 @@ public class EmployeeMgmtController implements Initializable {
         }
     }
     @FXML
-     public void editRow(){
+     public void updateFields(){
         Employee selectedItem = tableView.getSelectionModel().getSelectedItem();
         id_field.setText(selectedItem.getId()+"");
         fname_field.setText(selectedItem.getFname());
         mname_field.setText(selectedItem.getMname());
         lname_field.setText(selectedItem.getLname());
+        suffix_field.setText(selectedItem.getSuffix());
         position_field.setText(selectedItem.getPosition());
+        department_field.setText(selectedItem.getDepartment());
         shift_field.setText(selectedItem.getShift());
-        status_field.setText(selectedItem.getStatus()+"");
+        privilege_field.setText(selectedItem.getPrivilege());
 
      }
 
-     
-     
-//    @FXML
-//    private void updateRow(ActionEvent event){
-//        int index = tableView.getSelectionModel().getSelectedIndex();
-//        Employee selectedItem = data.get(index);
-//        
-//        data.get(index).setId(Integer.parseInt(id_field.getText()));
-//        data.get(index).setFname(fname_field.getText());
-//        data.get(index).setMname(mname_field.getText());
-//        data.get(index).setLname(lname_field.getText());
-//        data.get(index).setPosition(position_field.getText());
-//        data.get(index).setShift(shift_field.getText());
-//        
-//        tableView.refresh();
-//        System.out.println(index);
-//    }
         @FXML
     private void filterTable(KeyEvent event) {
          ObservableList<Employee> filteredData = FXCollections.observableArrayList();
@@ -237,8 +220,6 @@ private void deactivate(ActionEvent event) {
         // You can show a message or perform other actions here.
     }
 }
-
-
     
     private void executeQuery(String query){
         Connection con = getConnection();
@@ -255,19 +236,20 @@ private void deactivate(ActionEvent event) {
         ObservableList<Employee> employees = FXCollections.observableArrayList();
         try (Connection connection = getConnection();
             Statement statement = connection.createStatement()){
-            ResultSet rs = statement.executeQuery("SELECT * FROM employee WHERE status = 1");
+            ResultSet rs = statement.executeQuery("SELECT u.user_id, u.user_fname, u.user_mname, u.user_lname, u.suffix, p.position_name, d.department_name, s.shift_name, u.user_type, u.user_status from user u, assignment a, shift s, position p, department d where u.user_id = a.user_id AND s.shift_id = a.shift_id AND a.position_id = p.position_id AND p.department_id = d.department_id AND u.user_status = 1 GROUP BY u.user_id;");
             
             while (rs.next()) {
                   employees.add(new Employee(
-                                    rs.getInt("id"),
-                           rs.getString("fname"),
-                          rs.getString("mname"),
-                          rs.getString("lname"),
-                          rs.getString("sex"),
-                          rs.getString("position"),
-                          rs.getString("department"),
-                          rs.getString("shift"),
-                           rs.getInt("status")                       
+                                    rs.getInt("user_id"),
+                           rs.getString("user_fname"),
+                          rs.getString("user_mname"),
+                          rs.getString("user_lname"),
+                          rs.getString("suffix"),
+                          rs.getString("position_name"),
+                          rs.getString("department_name"),
+                          rs.getString("shift_name"),
+                           rs.getString("user_type"),
+                          rs.getInt("user_status")
                   ));
             }
 
@@ -277,41 +259,5 @@ private void deactivate(ActionEvent event) {
         return employees;
         
     }
-    
-
-    
-//     public static void createDatabase(String databaseName) {
-//        String jdbcUrl = "jdbc:mysql://localhost:3306/";
-//        String user = "root";
-//        String password = "";
-//
-//        Connection connection = null;
-//        Statement statement = null;
-//
-//        try {
-//            // Connect to MySQL server (without specifying a database)
-//            connection = DriverManager.getConnection(jdbcUrl, user, password);
-//
-//            // Create the database
-//            statement = connection.createStatement();
-//            String createDatabaseSQL = "CREATE DATABASE IF NOT EXISTS " + databaseName;
-//            statement.executeUpdate(createDatabaseSQL);
-//
-//            System.out.println("Database '" + databaseName + "' created successfully.");
-//        } catch (SQLException e) {
-//            System.err.println("Error creating the database: " + e.getMessage());
-//        } finally {
-//            try {
-//                if (statement != null) {
-//                    statement.close();
-//                }
-//                if (connection != null) {
-//                    connection.close();
-//                }
-//            } catch (SQLException e) {
-//                System.err.println("Error closing resources: " + e.getMessage());
-//            }
-//        }
-//    }
     
 }

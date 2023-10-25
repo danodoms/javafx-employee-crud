@@ -12,17 +12,35 @@ public class Employee {
     private String fname;
     private String mname;
     private String lname;
-    private String sex;
+    private String suffix;
     private String position;
     private String department;
     private String shift;
+    private String privilege;
 
-    public String getSex() {
-        return sex;
+    public String getSuffix() {
+        return suffix;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public String getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(String privilege) {
+        this.privilege = privilege;
+    }
+    private int status;
+
+    public String getSex() {
+        return suffix;
+    }
+
+    public void setSex(String suffix) {
+        this.suffix = suffix;
     }
 
     public String getDepartment() {
@@ -33,18 +51,19 @@ public class Employee {
         this.department = department;
     }
 
-    public Employee(int id, String fname, String mname, String lname, String sex, String position, String department, String shift, int status) {
+    public Employee(int id, String fname, String mname, String lname, String suffix, String position, String department, String shift, String privilege, int status) {
         this.id = id;
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
-        this.sex = sex;
+        this.suffix = suffix;
         this.position = position;
         this.department = department;
         this.shift = shift;
+        this.privilege = privilege;
         this.status = status;
     }
-    private int status;
+    
 
     public int getStatus() {
         return status;

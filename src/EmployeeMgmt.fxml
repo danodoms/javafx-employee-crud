@@ -13,80 +13,80 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="1042.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="1134.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
     <stylesheets>
         <URL value="@employeemgmt.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableView" layoutX="300.0" layoutY="95.0" onMouseClicked="#editRow" prefHeight="460.0" prefWidth="717.0">
+      <TableView fx:id="tableView" layoutX="246.0" layoutY="88.0" onMouseClicked="#updateFields" prefHeight="459.0" prefWidth="802.0">
         <columns>
           <TableColumn fx:id="col_id" prefWidth="44.0" text="ID" />
-          <TableColumn fx:id="col_fname" prefWidth="104.0" text="First Name" />
-            <TableColumn fx:id="col_mname" prefWidth="87.0" text="Middle Name" />
-            <TableColumn fx:id="col_lname" prefWidth="95.0" text="Last Name" />
-            <TableColumn fx:id="col_sex" minWidth="1.0" prefWidth="58.0" text="Sex" />
-            <TableColumn fx:id="col_position" prefWidth="90.0" text="Position" />
-            <TableColumn fx:id="col_department" minWidth="1.0" prefWidth="96.0" text="Dept" />
-            <TableColumn fx:id="col_shift" minWidth="0.0" prefWidth="87.0" text="Shift" />
-            <TableColumn fx:id="col_status" minWidth="1.0" prefWidth="58.0" text="Status" />
+          <TableColumn fx:id="col_fname" prefWidth="90.0" text="First Name" />
+            <TableColumn fx:id="col_mname" prefWidth="93.0" text="Middle Name" />
+            <TableColumn fx:id="col_lname" prefWidth="98.0" text="Last Name" />
+            <TableColumn fx:id="col_suffix" prefWidth="56.0" text="Suffix" />
+            <TableColumn fx:id="col_position" prefWidth="149.0" text="Position" />
+            <TableColumn fx:id="col_department" minWidth="1.0" prefWidth="112.0" text="Dept" />
+            <TableColumn fx:id="col_shift" minWidth="0.0" prefWidth="90.0" text="Shift" />
+            <TableColumn fx:id="col_privilege" minWidth="1.0" prefWidth="69.0" text="Privilege" />
         </columns>
       </TableView>
-      <Label layoutX="27.0" layoutY="23.0" text="Manage Employee">
+      <Label layoutX="27.0" layoutY="24.0" text="Manage Employee">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <VBox layoutX="27.0" layoutY="96.0" prefHeight="369.0" prefWidth="243.0">
+      <VBox layoutX="27.0" layoutY="89.0" prefHeight="470.0" prefWidth="180.0">
          <children>
             <TextField fx:id="id_field" editable="false" promptText="ID">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
             <TextField fx:id="fname_field" promptText="First Name">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
             <TextField fx:id="mname_field" promptText="Middle Name">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
             <TextField fx:id="lname_field" promptText="Last Name">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="sex_field" promptText="Sex">
+            <TextField fx:id="suffix_field" promptText="Suffix">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
             <TextField fx:id="position_field" promptText="Position">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
             <TextField fx:id="department_field" promptText="Department">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
             <TextField fx:id="shift_field" promptText="Shift">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="status_field" promptText="Status">
+            <TextField fx:id="privilege_field" promptText="Privilege">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
             <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertRecord" prefHeight="35.0" prefWidth="243.0" text="Insert">
@@ -106,9 +106,10 @@
             </Button>
          </children>
       </VBox>
-      <TextField fx:id="searchField" layoutX="300.0" layoutY="66.0" onKeyPressed="#filterTable" prefHeight="25.0" prefWidth="226.0" promptText="Search Keywords..." />
-      <ChoiceBox fx:id="shiftFilter_choiceBox" layoutX="824.0" layoutY="66.0" prefHeight="25.0" prefWidth="138.0" />
-      <ChoiceBox layoutX="719.0" layoutY="66.0" prefHeight="25.0" prefWidth="98.0" />
-      <CheckBox layoutX="541.0" layoutY="70.0" mnemonicParsing="false" text="CheckBox" />
+      <TextField fx:id="searchField" layoutX="246.0" layoutY="59.0" onKeyPressed="#filterTable" prefHeight="25.0" prefWidth="226.0" promptText="Search Keywords..." />
+      <ChoiceBox fx:id="privilegeFilter_choiceBox" layoutX="909.0" layoutY="59.0" prefHeight="25.0" prefWidth="139.0" />
+      <ChoiceBox fx:id="shiftFilter_choiceBox" layoutX="803.0" layoutY="59.0" prefHeight="25.0" prefWidth="96.0" />
+      <CheckBox layoutX="487.0" layoutY="63.0" mnemonicParsing="false" text="CheckBox" />
+      <ChoiceBox fx:id="departmentFilter_choiceBox" layoutX="629.0" layoutY="59.0" prefHeight="25.0" prefWidth="166.0" />
    </children>
 </AnchorPane>

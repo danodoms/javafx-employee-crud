@@ -68,8 +68,8 @@ public class Employee {
         return shift;
     }
 
-    public void setShif(String shif) {
-        this.shift = shif;
+    public void setShift(String shift) {
+        this.shift = shift;
     }
 
     Object idProperty() {

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="779.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
+<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="866.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
     <stylesheets>
         <URL value="@employeemgmt.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableView" layoutX="207.0" layoutY="106.0" prefHeight="387.0" prefWidth="543.0">
+      <TableView fx:id="tableView" layoutX="300.0" layoutY="95.0" onMouseClicked="#editRow" prefHeight="400.0" prefWidth="543.0">
         <columns>
           <TableColumn fx:id="col_id" prefWidth="57.0" text="ID" />
           <TableColumn fx:id="col_fname" prefWidth="104.0" text="First Name" />
@@ -22,10 +26,63 @@
             <TableColumn fx:id="col_shift" prefWidth="111.0" text="Shift" />
         </columns>
       </TableView>
-      <Label layoutX="207.0" layoutY="38.0" text="Manage Employee">
+      <Label layoutX="27.0" layoutY="23.0" text="Manage Employee">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <VBox layoutX="27.0" layoutY="96.0" prefHeight="369.0" prefWidth="243.0">
+         <children>
+            <TextField fx:id="id_field" promptText="ID">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="fname_field" promptText="First Name">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="mname_field" promptText="Middle Name">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="lname_field" promptText="Last Name">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="position_field" promptText="Position">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="shift_field" promptText="Shift">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <Button fx:id="insertBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="243.0" text="Insert">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateRow" prefHeight="35.0" prefWidth="243.0" text="Update">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="deleteBtn" mnemonicParsing="false" prefHeight="32.0" prefWidth="243.0" text="Delete">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <TextField fx:id="searchField" layoutX="641.0" layoutY="63.0" onKeyPressed="#filterTable" prefHeight="25.0" prefWidth="202.0" promptText="Search Keywords..." />
    </children>
 </AnchorPane>

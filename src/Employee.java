@@ -13,9 +13,6 @@ public class Employee {
     private String mname;
     private String lname;
     private String suffix;
-    private String position;
-    private String department;
-    private String shift;
     private String privilege;
 
     public String getSuffix() {
@@ -43,23 +40,13 @@ public class Employee {
         this.suffix = suffix;
     }
 
-    public String getDepartment() {
-        return department;
-    }
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public Employee(int id, String fname, String mname, String lname, String suffix, String position, String department, String shift, String privilege, int status) {
+    public Employee(int id, String fname, String mname, String lname, String suffix, String privilege, int status) {
         this.id = id;
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
         this.suffix = suffix;
-        this.position = position;
-        this.department = department;
-        this.shift = shift;
         this.privilege = privilege;
         this.status = status;
     }
@@ -103,22 +90,6 @@ public class Employee {
 
     public void setLname(String lname) {
         this.lname = lname;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getShift() {
-        return shift;
-    }
-
-    public void setShift(String shift) {
-        this.shift = shift;
     }
 
     Object idProperty() {

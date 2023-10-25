@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,21 +12,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="1134.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
+<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="1062.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
     <stylesheets>
         <URL value="@employeemgmt.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableView" layoutX="246.0" layoutY="88.0" onMouseClicked="#updateFields" prefHeight="459.0" prefWidth="802.0">
+      <TableView fx:id="user_table" layoutX="227.0" layoutY="91.0" onMouseClicked="#updateFields" prefHeight="332.0" prefWidth="451.0">
         <columns>
           <TableColumn fx:id="col_id" prefWidth="44.0" text="ID" />
           <TableColumn fx:id="col_fname" prefWidth="90.0" text="First Name" />
             <TableColumn fx:id="col_mname" prefWidth="93.0" text="Middle Name" />
             <TableColumn fx:id="col_lname" prefWidth="98.0" text="Last Name" />
             <TableColumn fx:id="col_suffix" prefWidth="56.0" text="Suffix" />
-            <TableColumn fx:id="col_position" prefWidth="149.0" text="Position" />
-            <TableColumn fx:id="col_department" minWidth="1.0" prefWidth="112.0" text="Dept" />
-            <TableColumn fx:id="col_shift" minWidth="0.0" prefWidth="90.0" text="Shift" />
             <TableColumn fx:id="col_privilege" minWidth="1.0" prefWidth="69.0" text="Privilege" />
         </columns>
       </TableView>
@@ -63,24 +59,6 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="position_field" promptText="Position">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="department_field" promptText="Department">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="shift_field" promptText="Shift">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TextField>
             <TextField fx:id="privilege_field" promptText="Privilege">
                <opaqueInsets>
                   <Insets />
@@ -106,10 +84,16 @@
             </Button>
          </children>
       </VBox>
-      <TextField fx:id="searchField" layoutX="246.0" layoutY="59.0" onKeyPressed="#filterTable" prefHeight="25.0" prefWidth="226.0" promptText="Search Keywords..." />
-      <ChoiceBox fx:id="privilegeFilter_choiceBox" layoutX="909.0" layoutY="59.0" prefHeight="25.0" prefWidth="139.0" />
-      <ChoiceBox fx:id="shiftFilter_choiceBox" layoutX="803.0" layoutY="59.0" prefHeight="25.0" prefWidth="96.0" />
-      <CheckBox layoutX="487.0" layoutY="63.0" mnemonicParsing="false" text="CheckBox" />
-      <ChoiceBox fx:id="departmentFilter_choiceBox" layoutX="629.0" layoutY="59.0" prefHeight="25.0" prefWidth="166.0" />
+      <ChoiceBox fx:id="privilegeFilter_choiceBox" layoutX="928.0" layoutY="59.0" prefHeight="25.0" prefWidth="90.0" />
+      <ChoiceBox fx:id="shiftFilter_choiceBox" layoutX="836.0" layoutY="59.0" prefHeight="25.0" prefWidth="84.0" />
+      <ChoiceBox fx:id="departmentFilter_choiceBox" layoutX="744.0" layoutY="59.0" prefHeight="25.0" prefWidth="84.0" />
+      <TableView fx:id="assignment_table" layoutX="693.0" layoutY="91.0" onMouseClicked="#updateFields" prefHeight="332.0" prefWidth="325.0">
+         <columns>
+            <TableColumn fx:id="col_assignment_id" prefWidth="44.0" text="ID" />
+            <TableColumn fx:id="col_department" prefWidth="90.0" text="Department" />
+            <TableColumn fx:id="col_position" prefWidth="93.0" text="Position" />
+            <TableColumn fx:id="col_shift" prefWidth="98.0" text="Shift" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -64,6 +64,31 @@ public class dbMethods {
         
     }
            
+        public ObservableList<Employee> getFilteredEmployee(String query){
+        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        try (Connection connection = getConnection();         
+            Statement statement = connection.createStatement()){
+            ResultSet rs = statement.executeQuery(query);
+            
+            while (rs.next()) {
+                  employees.add(new Employee(
+                                    rs.getInt("user_id"),
+                           rs.getString("user_fname"),
+                          rs.getString("user_mname"),
+                          rs.getString("user_lname"),
+                          rs.getString("suffix"),
+                           rs.getString("user_type"),
+                          rs.getInt("user_status")
+                  ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employees;
+        
+    }
+           
     public ObservableList<Assignment> getAssignmentByUserId(int user_id){
          ObservableList<Assignment> assignments = FXCollections.observableArrayList();
         try (Connection connection = getConnection();
@@ -78,8 +103,8 @@ public class dbMethods {
             while (rs.next()) {
                   assignments.add(new Assignment(
                                     rs.getInt("assignment_id"),
-                           rs.getString("position_name"),
-                          rs.getString("department_name"),
+                           rs.getString("department_name"),
+                          rs.getString("position_name"),
                           rs.getString("shift_name")
                   ));
             }
@@ -88,6 +113,44 @@ public class dbMethods {
             e.printStackTrace();
         }
         return assignments;
+    }
+    
+    public ObservableList<Shift> getShift(){
+        ObservableList<Shift> shifts = FXCollections.observableArrayList();
+        try (Connection connection = getConnection();
+            Statement statement = connection.createStatement()){
+            ResultSet rs = statement.executeQuery("select * from shift");
+            
+            while (rs.next()) {
+                  shifts.add(new Shift(
+                                    rs.getInt("shift_id"),
+                           rs.getString("shift_name")
+                  ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return shifts;
+    }
+    
+        public ObservableList<Department> getDepartment(){
+        ObservableList<Department> departments = FXCollections.observableArrayList();
+        try (Connection connection = getConnection();
+            Statement statement = connection.createStatement()){
+            ResultSet rs = statement.executeQuery("select * from department");
+            
+            while (rs.next()) {
+                  departments.add(new Department(
+                                    rs.getInt("department_id"),
+                           rs.getString("department_name")
+                  ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return departments;
     }
 }
 

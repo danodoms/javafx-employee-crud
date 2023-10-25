@@ -9,14 +9,14 @@
  */
 public class Assignment {
     private int id;
-    private String user;
     private String position;
+    private String department;
     private String shift;
 
-    public Assignment(int id, String user, String position, String shift) {
+    public Assignment(int id, String department, String position, String shift) {
         this.id = id;
-        this.user = user;
         this.position = position;
+        this.department = department;
         this.shift = shift;
     }
 
@@ -28,12 +28,12 @@ public class Assignment {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getPosition() {

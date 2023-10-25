@@ -55,7 +55,7 @@ public class EmployeeMgmtController implements Initializable {
     private Button deleteBtn;
     private TextField status_field;
     @FXML
-    private ChoiceBox<String> shiftFilter_choiceBox;
+    private ChoiceBox<Shift> shiftFilter_choiceBox;
     @FXML
     private TableColumn<Assignment, String> col_department;
     @FXML
@@ -65,7 +65,7 @@ public class EmployeeMgmtController implements Initializable {
     @FXML
     private ChoiceBox<String> privilegeFilter_choiceBox;
     @FXML
-    private ChoiceBox<String> departmentFilter_choiceBox;
+    private ChoiceBox<Department> departmentFilter_choiceBox;
     @FXML
     private TextField suffix_field;
     @FXML
@@ -86,6 +86,52 @@ public class EmployeeMgmtController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         showUserTable();
+        
+//        departmentFilter_choiceBox.setValue("All");
+//        departmentFilter_choiceBox.getItems().addAll("All","Administrative", "Instruction");
+//        
+//        shiftFilter_choiceBox.setValue("All");
+
+
+        privilegeFilter_choiceBox.setOnAction(this::showFilteredEmployeeTable);
+        shiftFilter_choiceBox.setOnAction(this::showFilteredEmployeeTable);
+        departmentFilter_choiceBox.setOnAction(this::showFilteredEmployeeTable);
+        
+        
+//        privilegeFilter_choiceBox.setOnAction(event -> showFilteredEmployeeTable());
+//        shiftFilter_choiceBox.setOnAction(event -> showFilteredEmployeeTable());
+//        departmentFilter_choiceBox.setOnAction(event -> showFilteredEmployeeTable());
+//        
+        
+        
+//        privilegeFilter_choiceBox.setOnAction(event -> {
+//            System.out.println("Privilege Filter Action Handler Called");
+//            showFilteredEmployeeTable();
+//        });
+//
+//        shiftFilter_choiceBox.setOnAction(event -> {
+//            System.out.println("Shift Filter Action Handler Called");
+//            showFilteredEmployeeTable();
+//        });
+//
+//        departmentFilter_choiceBox.setOnAction(event -> {
+//            System.out.println("Department Filter Action Handler Called");
+//            showFilteredEmployeeTable();
+//        });
+
+
+
+      
+        privilegeFilter_choiceBox.setValue("All");
+        privilegeFilter_choiceBox.getItems().addAll("All","employee","admin","records officer");
+        
+        shiftFilter_choiceBox.setValue(new Shift("All"));
+        shiftFilter_choiceBox.getItems().addAll(new Shift("All"));
+        shiftFilter_choiceBox.getItems().addAll(dbMethods.getShift());
+        
+        departmentFilter_choiceBox.setValue(new Department("All"));
+        departmentFilter_choiceBox.getItems().addAll(new Department("All"));
+        departmentFilter_choiceBox.getItems().addAll(dbMethods.getDepartment());
         
         //USER TABLE
         col_id.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
@@ -136,9 +182,6 @@ private void clearFields() {
     fname_field.clear();
     mname_field.clear();
     lname_field.clear();
-    position_field.clear();
-    shift_field.clear();
-    status_field.clear();
 }
 
     
@@ -199,7 +242,44 @@ private void deactivate(ActionEvent event) {
     }
 }
     
- 
+public void showFilteredEmployeeTable(ActionEvent event){
+    clearFields();
+    ObservableList<Employee> filteredEmployees = dbMethods.getFilteredEmployee(generateEmployeeFilterQuery());
+        user_table.setItems(filteredEmployees);
+        assignment_table.getItems().clear();
+        //clearFields();
+    
+    
+}
+
+
+public String generateEmployeeFilterQuery() {
+    String query = "SELECT u.user_id, u.user_fname, u.user_mname, u.user_lname, u.suffix, p.position_name, d.department_name, s.shift_name, u.user_type, u.user_status from user u, assignment a, shift s, position p, department d where u.user_id = a.user_id AND s.shift_id = a.shift_id AND a.position_id = p.position_id AND p.department_id = d.department_id AND u.user_status = 1";
+    
+    String privilege = privilegeFilter_choiceBox.getValue() != null ? privilegeFilter_choiceBox.getValue() : "";
+    String departmentId = departmentFilter_choiceBox.getValue() != null ? departmentFilter_choiceBox.getValue().getId() + "" : "";
+    String shiftId = shiftFilter_choiceBox.getValue() != null ? shiftFilter_choiceBox.getValue().getId() + "" : "";
+    
+    if (!"All".equals(privilege)) {
+        query += " AND u.user_type = " + "'"+privilege+"'";
+    }
+    
+    if (!"0".equals(departmentId)) {
+        query += " AND d.department_id = " + departmentId;
+    }
+    
+    if (!"0".equals(shiftId)) {
+        query += " AND s.shift_id = " + shiftId;
+    }
+    
+    query += " GROUP BY u.user_id";
+    
+    System.out.println(query);
+    
+    return query;
+}
+
+
     
 
     

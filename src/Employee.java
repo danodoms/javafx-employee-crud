@@ -14,14 +14,16 @@ public class Employee {
     private String lname;
     private String position;
     private String shift;
+    private int status;
 
-    public Employee(int id, String fname, String mname, String lname, String position, String shift) {
+    public Employee(int id, String fname, String mname, String lname, String position, String shift, int status) {
         this.id = id;
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
         this.position = position;
         this.shift = shift;
+        this.status = status;
     }
 
     public int getId() {

@@ -84,5 +84,6 @@
          </children>
       </VBox>
       <TextField fx:id="searchField" layoutX="641.0" layoutY="63.0" onKeyPressed="#filterTable" prefHeight="25.0" prefWidth="202.0" promptText="Search Keywords..." />
+      <Button fx:id="exportBtn" layoutX="300.0" layoutY="63.0" mnemonicParsing="false" onAction="#exportToDb" prefHeight="25.0" prefWidth="161.0" text="Export Data" />
    </children>
 </AnchorPane>

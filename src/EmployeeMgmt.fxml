@@ -33,58 +33,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <VBox layoutX="27.0" layoutY="89.0" prefHeight="470.0" prefWidth="180.0">
-         <children>
-            <TextField fx:id="id_field" editable="false" promptText="ID">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="fname_field" promptText="First Name">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="mname_field" promptText="Middle Name">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="lname_field" promptText="Last Name">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="suffix_field" promptText="Suffix">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="privilege_field" promptText="Privilege">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertRecord" prefHeight="35.0" prefWidth="243.0" text="Insert">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateRow" prefHeight="35.0" prefWidth="243.0" text="Update">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deactivate" prefHeight="32.0" prefWidth="243.0" text="Delete">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
       <TableView fx:id="assignment_table" layoutX="693.0" layoutY="91.0" onMouseClicked="#updateFields" prefHeight="332.0" prefWidth="325.0">
          <columns>
             <TableColumn fx:id="col_assignment_id" prefWidth="44.0" text="ID" />
@@ -126,6 +74,111 @@
                </HBox.margin>
             </Label>
             <ChoiceBox fx:id="shiftFilter_choiceBox" prefHeight="25.0" prefWidth="104.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="14.0" layoutY="91.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="315.0" prefWidth="153.0">
+               <children>
+                  <Label text="ID">
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="First Name">
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Middle Name">
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Last Name">
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Suffix">
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Privilege">
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="470.0" prefWidth="180.0">
+               <children>
+                  <TextField fx:id="id_field" editable="false" promptText="ID">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="fname_field" promptText="First Name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="mname_field" promptText="Middle Name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="lname_field" promptText="Last Name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="suffix_field" promptText="Suffix">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="privilege_field" promptText="Privilege">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertRecord" prefHeight="35.0" prefWidth="243.0" text="Insert">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateRow" prefHeight="35.0" prefWidth="243.0" text="Update">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deactivate" prefHeight="32.0" prefWidth="243.0" text="Delete">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>

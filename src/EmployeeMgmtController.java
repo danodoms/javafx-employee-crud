@@ -182,19 +182,21 @@ private void clearFields() {
     fname_field.clear();
     mname_field.clear();
     lname_field.clear();
+    privilege_field.clear();
+    suffix_field.clear();
 }
 
     
     
   @FXML
 private void insertRecord(){
-   String query = "INSERT INTO employee (fname, mname, lname, position, shift, status) VALUES ('" 
+   String query = "INSERT INTO user (user_fname, password, user_mname, user_lname, suffix, user_type) VALUES ('" 
             + fname_field.getText() + "', '"
+            + "password" + "', '"
             + mname_field.getText() + "', '"
             + lname_field.getText() + "', '"
-            + position_field.getText() + "', '"
-            + shift_field.getText() + "', '"
-            + status_field.getText() + "')";
+            + suffix_field.getText() + "', '"
+            + privilege_field.getText() + "')";
 
    dbMethods.executeQuery(query);
    showUserTable();

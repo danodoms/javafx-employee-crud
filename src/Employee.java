@@ -12,6 +12,14 @@ public class Employee {
     private String fname;
     private String mname;
     private String lname;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
     private String position;
     private String shift;
     private int status;

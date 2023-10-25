@@ -59,7 +59,9 @@ public class EmployeeMgmtController implements Initializable {
     @FXML
     private TextField searchField;
     @FXML
-    private Button exportBtn;
+    private TableColumn<Employee, Integer> col_status;
+    @FXML
+    private TextField status_field;
 
     /**
      * Initializes the controller class.
@@ -67,7 +69,7 @@ public class EmployeeMgmtController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        tableView.setItems(getEmployee());
+        showEmployee();
         //System.out.println(data.get(0).getFname());
         col_id.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
         col_fname.setCellValueFactory(new PropertyValueFactory<Employee, String>("fname"));
@@ -75,6 +77,7 @@ public class EmployeeMgmtController implements Initializable {
         col_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("lname"));
         col_position.setCellValueFactory(new PropertyValueFactory<Employee, String>("position"));
         col_shift.setCellValueFactory(new PropertyValueFactory<Employee, String>("shift"));
+        col_status.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("status"));
     }    
     
 //     ObservableList<Employee> data = FXCollections.observableArrayList(
@@ -84,6 +87,22 @@ public class EmployeeMgmtController implements Initializable {
 //        );
 //     
      
+    
+    
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/employeeact5to8";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "";
+    
+    public Connection getConnection(){
+        Connection connection;
+        try{
+            connection = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
+            return connection;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
     @FXML
      public void editRow(){
         Employee selectedItem = tableView.getSelectionModel().getSelectedItem();
@@ -93,9 +112,12 @@ public class EmployeeMgmtController implements Initializable {
         lname_field.setText(selectedItem.getLname());
         position_field.setText(selectedItem.getPosition());
         shift_field.setText(selectedItem.getShift());
+        status_field.setText(selectedItem.getStatus()+"");
 
      }
 
+     
+     
 //    @FXML
 //    private void updateRow(ActionEvent event){
 //        int index = tableView.getSelectionModel().getSelectedIndex();
@@ -111,25 +133,7 @@ public class EmployeeMgmtController implements Initializable {
 //        tableView.refresh();
 //        System.out.println(index);
 //    }
-    
         @FXML
-    private void updateRow(ActionEvent event){
-        int index = tableView.getSelectionModel().getSelectedIndex();
-        
-        Employee selectedItem = getEmployee().get(index);
-        
-        selectedItem.setId(Integer.parseInt(id_field.getText()));
-        selectedItem.setFname(fname_field.getText());
-        selectedItem.setMname(mname_field.getText());
-        selectedItem.setLname(lname_field.getText());
-        selectedItem.setPosition(position_field.getText());
-        selectedItem.setShift(shift_field.getText());
-        
-        tableView.refresh();
-        System.out.println(index);
-    }
-
-    @FXML
     private void filterTable(KeyEvent event) {
          ObservableList<Employee> filteredData = FXCollections.observableArrayList();
          String keyword = searchField.getText();
@@ -140,135 +144,97 @@ public class EmployeeMgmtController implements Initializable {
             || employee.getMname().toLowerCase().contains(keyword.toLowerCase())
             || employee.getLname().toLowerCase().contains(keyword.toLowerCase())
             || employee.getPosition().toLowerCase().contains(keyword.toLowerCase())
-            || employee.getShift().toLowerCase().contains(keyword.toLowerCase())) {
+            || employee.getShift().toLowerCase().contains(keyword.toLowerCase())){
             filteredData.add(employee);
         }
+    } 
+     
     }
-
-    // Update the TableView with the filtered data.
-    tableView.setItems(filteredData);
-    }
-//    
-//    private static final String DB_URL = "jdbc:mysql://localhost:3306/v11_attendance_system";
-//    private static final String DB_USER = "root";
-//    private static final String DB_PASSWORD = "";
-//    
-//    public Connection getConnection(){
-//        Connection connection;
-//        try{
-//            connection = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
-//            return connection;
-//        }catch(Exception e){
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-    
-    
-    @FXML
-    private void exportToDb() {
-        String dbName = "employeeDump";
-        createDatabase(dbName);
-        String jdbcUrl = "jdbc:mysql://localhost:3306/"+ dbName;
-        String user = "root";
-        String password = "";
-
-        try {
-            Connection connection = DriverManager.getConnection(jdbcUrl, user, password);
-            
-            ObservableList<Employee> items = tableView.getItems();
-
-            String insertQuery = "INSERT INTO employee (id, fname, mname, lname, position, shift) VALUES (?, ?, ?, ?, ?, ?)";
-
-            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
-
-            for (Employee employee : items) {
-                preparedStatement.setInt(1, employee.getId());
-                preparedStatement.setString(2, employee.getFname());
-                preparedStatement.setString(3, employee.getMname());
-                preparedStatement.setString(4, employee.getLname());
-                preparedStatement.setString(5, employee.getPosition());
-                preparedStatement.setString(6, employee.getShift());
-                preparedStatement.executeUpdate();
-            }
-
-            preparedStatement.close();
-            connection.close();
-
-            System.out.println("Data exported to MySQL database.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+     
+     
+    public void showEmployee(){
+        ObservableList<Employee> employees = getEmployee();
+        tableView.setItems(employees);
     }
     
-    
-    
-    public static void createDatabase(String databaseName) {
-    String jdbcUrl = "jdbc:mysql://localhost:3306/";
-    String user = "root";
-    String password = "";
-
-    Connection connection = null;
-    Statement statement = null;
-
-    try {
-        // Connect to MySQL server (without specifying a database)
-        connection = DriverManager.getConnection(jdbcUrl, user, password);
-
-        // Create the database
-        statement = connection.createStatement();
-        String createDatabaseSQL = "CREATE DATABASE IF NOT EXISTS " + databaseName;
-        statement.executeUpdate(createDatabaseSQL);
-
-        System.out.println("Database '" + databaseName + "' created successfully.");
-
-        // Use the newly created database
-        jdbcUrl = "jdbc:mysql://localhost:3306/" + databaseName;
-        connection = DriverManager.getConnection(jdbcUrl, user, password);
-
-        // Create the "employee" table
-        statement = connection.createStatement();
-        String createTableSQL = "CREATE TABLE IF NOT EXISTS employee ("
-                + "id INT AUTO_INCREMENT PRIMARY KEY,"
-                + "fname VARCHAR(255),"
-                + "mname VARCHAR(255),"
-                + "lname VARCHAR(255),"
-                + "position VARCHAR(255),"
-                + "shift VARCHAR(255)"
-                + "status INT"
-                + ")";
-        statement.executeUpdate(createTableSQL);
-
-        System.out.println("Table 'employee' created successfully.");
-    } catch (SQLException e) {
-        System.err.println("Error creating the database or table: " + e.getMessage());
-    } finally {
-        try {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            System.err.println("Error closing resources: " + e.getMessage());
-        }
-    }
+private void clearFields() {
+    id_field.clear();
+    fname_field.clear();
+    mname_field.clear();
+    lname_field.clear();
+    position_field.clear();
+    shift_field.clear();
+    status_field.clear();
 }
 
     
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/employeeAct5to8";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
     
-    public Connection getConnection(){
-        Connection connection;
+  @FXML
+private void insertRecord(){
+   String query = "INSERT INTO employee (fname, mname, lname, position, shift, status) VALUES ('" 
+            + fname_field.getText() + "', '"
+            + mname_field.getText() + "', '"
+            + lname_field.getText() + "', '"
+            + position_field.getText() + "', '"
+            + shift_field.getText() + "', '"
+            + status_field.getText() + "')";
+
+   executeQuery(query);
+   showEmployee();
+   clearFields();
+}
+
+@FXML
+private void updateRow(ActionEvent event) {
+    Employee selectedItem = tableView.getSelectionModel().getSelectedItem();
+    
+    if (selectedItem != null) {
+        String query = "UPDATE employee SET " +
+            "fname = '" + fname_field.getText() + "', " +
+            "mname = '" + mname_field.getText() + "', " +
+            "lname = '" + lname_field.getText() + "', " +
+            "position = '" + position_field.getText() + "', " +
+            "shift = '" + shift_field.getText() + "', " +
+            "status = '" + status_field.getText() + "' " +
+            "WHERE id = " + selectedItem.getId();
+    
+        executeQuery(query);
+        showEmployee();
+        clearFields();
+    } else {
+        // Handle case when no row is selected or handle error.
+        // You can show a message or perform other actions here.
+    }
+}
+
+
+@FXML
+private void deactivate(ActionEvent event) {
+    Employee selectedItem = tableView.getSelectionModel().getSelectedItem();
+    
+    if (selectedItem != null) {
+        int id = selectedItem.getId();
+        String query = "UPDATE employee SET status = 0 WHERE id = " + id;
+    
+        executeQuery(query);
+        showEmployee();
+        clearFields();
+    } else {
+        // Handle case when no row is selected or handle error.
+        // You can show a message or perform other actions here.
+    }
+}
+
+
+    
+    private void executeQuery(String query){
+        Connection con = getConnection();
+        Statement st;
         try{
-            connection = DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD);
-            return connection;
+            st = con.createStatement();
+            st.executeUpdate(query);
         }catch(Exception e){
             e.printStackTrace();
-            return null;
         }
     }
     
@@ -276,7 +242,7 @@ public class EmployeeMgmtController implements Initializable {
         ObservableList<Employee> employees = FXCollections.observableArrayList();
         try (Connection connection = getConnection();
             Statement statement = connection.createStatement()){
-            ResultSet rs = statement.executeQuery("SELECT * FROM employee");
+            ResultSet rs = statement.executeQuery("SELECT * FROM employee WHERE status = 1");
             
             while (rs.next()) {
                   employees.add(new Employee(

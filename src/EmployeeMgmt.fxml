@@ -18,12 +18,13 @@
    <children>
       <TableView fx:id="tableView" layoutX="300.0" layoutY="95.0" onMouseClicked="#editRow" prefHeight="400.0" prefWidth="543.0">
         <columns>
-          <TableColumn fx:id="col_id" prefWidth="57.0" text="ID" />
-          <TableColumn fx:id="col_fname" prefWidth="104.0" text="First Name" />
-            <TableColumn fx:id="col_mname" prefWidth="85.0" text="Middle Name" />
-            <TableColumn fx:id="col_lname" prefWidth="93.0" text="Last Name" />
-            <TableColumn fx:id="col_position" prefWidth="92.0" text="Position" />
-            <TableColumn fx:id="col_shift" prefWidth="111.0" text="Shift" />
+          <TableColumn fx:id="col_id" prefWidth="44.0" text="ID" />
+          <TableColumn fx:id="col_fname" prefWidth="95.0" text="First Name" />
+            <TableColumn fx:id="col_mname" prefWidth="87.0" text="Middle Name" />
+            <TableColumn fx:id="col_lname" prefWidth="94.0" text="Last Name" />
+            <TableColumn fx:id="col_position" prefWidth="76.0" text="Position" />
+            <TableColumn fx:id="col_shift" minWidth="0.0" prefWidth="97.0" text="Shift" />
+            <TableColumn fx:id="col_status" minWidth="1.0" prefWidth="49.0" text="Status" />
         </columns>
       </TableView>
       <Label layoutX="27.0" layoutY="23.0" text="Manage Employee">
@@ -33,7 +34,7 @@
       </Label>
       <VBox layoutX="27.0" layoutY="96.0" prefHeight="369.0" prefWidth="243.0">
          <children>
-            <TextField fx:id="id_field" promptText="ID">
+            <TextField fx:id="id_field" editable="false" promptText="ID">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -66,7 +67,15 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <Button fx:id="insertBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="243.0" text="Insert">
+            <TextField fx:id="status_field" promptText="Status">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertRecord" prefHeight="35.0" prefWidth="243.0" text="Insert">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -76,7 +85,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="deleteBtn" mnemonicParsing="false" prefHeight="32.0" prefWidth="243.0" text="Delete">
+            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deactivate" prefHeight="32.0" prefWidth="243.0" text="Delete">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -84,6 +93,5 @@
          </children>
       </VBox>
       <TextField fx:id="searchField" layoutX="641.0" layoutY="63.0" onKeyPressed="#filterTable" prefHeight="25.0" prefWidth="202.0" promptText="Search Keywords..." />
-      <Button fx:id="exportBtn" layoutX="300.0" layoutY="63.0" mnemonicParsing="false" onAction="#exportToDb" prefHeight="25.0" prefWidth="161.0" text="Export Data" />
    </children>
 </AnchorPane>

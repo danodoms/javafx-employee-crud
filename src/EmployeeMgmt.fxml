@@ -8,19 +8,21 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="870.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
+<AnchorPane prefHeight="520.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
     <stylesheets>
         <URL value="@employeemgmt.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="user_table" layoutX="29.0" layoutY="72.0" onMouseClicked="#updateFields" prefHeight="290.0" prefWidth="451.0">
+      <TableView fx:id="user_table" layoutX="29.0" layoutY="72.0" onMouseClicked="#updateFields" prefHeight="290.0" prefWidth="451.0" styleClass="table" stylesheets="@employeemgmt.css">
         <columns>
-          <TableColumn fx:id="col_id" prefWidth="44.0" text="ID" />
+          <TableColumn id="ut_col" fx:id="col_id" prefWidth="44.0" text="ID" />
           <TableColumn fx:id="col_fname" prefWidth="90.0" text="First Name" />
             <TableColumn fx:id="col_mname" prefWidth="93.0" text="Middle Name" />
             <TableColumn fx:id="col_lname" prefWidth="98.0" text="Last Name" />
@@ -28,12 +30,12 @@
             <TableColumn fx:id="col_privilege" minWidth="1.0" prefWidth="69.0" text="Privilege" />
         </columns>
       </TableView>
-      <Label layoutX="29.0" layoutY="30.0" text="Manage Employee">
+      <Label layoutX="29.0" layoutY="30.0" styleClass="title-label" text="Manage Employee">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="assignment_table" layoutX="505.0" layoutY="72.0" onMouseClicked="#updateFields" prefHeight="414.0" prefWidth="325.0">
+      <TableView fx:id="assignment_table" layoutX="505.0" layoutY="72.0" onMouseClicked="#updateFields" prefHeight="414.0" prefWidth="325.0" styleClass="table">
          <columns>
             <TableColumn fx:id="col_assignment_id" prefWidth="44.0" text="ID" />
             <TableColumn fx:id="col_department" prefWidth="90.0" text="Department" />
@@ -41,7 +43,7 @@
             <TableColumn fx:id="col_shift" prefWidth="98.0" text="Shift" />
          </columns>
       </TableView>
-      <HBox layoutX="279.0" layoutY="35.0" prefHeight="25.0" prefWidth="201.0">
+      <HBox layoutX="302.0" layoutY="35.0" prefHeight="27.0" prefWidth="178.0">
          <children>
             <Label prefHeight="25.0" prefWidth="57.0" text="Privilege" textAlignment="CENTER">
                <padding>
@@ -51,7 +53,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <ChoiceBox fx:id="privilegeFilter_choiceBox" prefHeight="25.0" prefWidth="127.0" />
+            <ChoiceBox fx:id="privilegeFilter_choiceBox" prefHeight="27.0" prefWidth="100.0" />
          </children>
       </HBox>
       <HBox layoutX="505.0" layoutY="35.0" prefHeight="25.0" prefWidth="325.0">
@@ -73,10 +75,10 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <ChoiceBox fx:id="shiftFilter_choiceBox" prefHeight="25.0" prefWidth="104.0" />
+            <ChoiceBox fx:id="shiftFilter_choiceBox" prefHeight="27.0" prefWidth="95.0" />
          </children>
       </HBox>
-      <VBox layoutX="29.0" layoutY="381.0" prefHeight="111.0" prefWidth="451.0">
+      <VBox layoutX="29.0" layoutY="381.0" prefHeight="111.0" prefWidth="363.0">
          <children>
             <HBox prefHeight="17.0" prefWidth="451.0" spacing="10.0">
                <children>
@@ -88,7 +90,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="99.0" text="First Name">
+                  <Label prefHeight="18.0" prefWidth="147.0" text="First Name">
                      <padding>
                         <Insets top="3.0" />
                      </padding>
@@ -104,27 +106,11 @@
                         <Insets top="3.0" />
                      </padding>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="99.0" text="Last Name">
-                     <padding>
-                        <Insets top="3.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label text="Suffix">
-                     <padding>
-                        <Insets top="3.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="21.0" prefWidth="451.0" spacing="5.0">
                <children>
-                  <TextField fx:id="id_field" editable="false" prefHeight="25.0" prefWidth="44.0" promptText="ID">
+                  <TextField fx:id="id_field" editable="false" prefHeight="30.0" prefWidth="72.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -132,7 +118,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fname_field" prefHeight="25.0" prefWidth="112.0" promptText="First Name">
+                  <TextField fx:id="fname_field" prefHeight="30.0" prefWidth="161.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -140,23 +126,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="mname_field" prefHeight="25.0" prefWidth="116.0" promptText="Middle Name">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="lname_field" prefHeight="25.0" prefWidth="109.0" promptText="Last Name">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="suffix_field" prefHeight="25.0" prefWidth="52.0" promptText="Suffix">
+                  <TextField fx:id="mname_field" prefHeight="30.0" prefWidth="161.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -168,6 +138,22 @@
             </HBox>
             <HBox prefHeight="16.0" prefWidth="451.0">
                <children>
+                  <Label prefHeight="18.0" prefWidth="155.0" text="Last Name">
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="18.0" prefWidth="56.0" text="Suffix">
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
                   <Label text="Privilege">
                      <padding>
                         <Insets top="3.0" />
@@ -180,7 +166,23 @@
             </HBox>
             <HBox prefHeight="0.0" prefWidth="451.0" spacing="5.0">
                <children>
-                  <TextField fx:id="privilege_field" prefHeight="30.0" prefWidth="308.0" promptText="Privilege">
+                  <TextField fx:id="lname_field" prefHeight="30.0" prefWidth="187.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="suffix_field" prefHeight="30.0" prefWidth="85.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="privilege_field" prefHeight="30.0" prefWidth="183.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -191,12 +193,21 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertRecord" prefHeight="35.0" prefWidth="243.0" text="Insert" />
-                  <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateRow" prefHeight="35.0" prefWidth="243.0" text="Update" />
-                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deactivate" prefHeight="32.0" prefWidth="243.0" text="Delete" />
                </children>
             </HBox>
          </children>
       </VBox>
+      <VBox layoutX="402.0" layoutY="399.0" prefHeight="82.0" prefWidth="77.0" spacing="5.0">
+         <children>
+            <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertRecord" prefHeight="35.0" prefWidth="77.0" stylesheets="@employeemgmt.css" text="Add" />
+            <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateRow" prefHeight="35.0" prefWidth="243.0" stylesheets="@employeemgmt.css" text="Update" />
+            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deactivate" prefHeight="32.0" prefWidth="243.0" stylesheets="@employeemgmt.css" text="Delete" />
+         </children>
+      </VBox>
+      <ImageView fx:id="themeToggle" fitHeight="25.0" fitWidth="28.0" layoutX="242.0" layoutY="36.0" onMouseClicked="#switchTheme" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-moon-48.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

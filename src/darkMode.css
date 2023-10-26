@@ -1,5 +1,5 @@
 AnchorPane {
-/*    -fx-background-color: #4682A9;*/
+    -fx-background-color: #16171a;
 }
 
 /* Styling for TableView */
@@ -39,6 +39,7 @@ Label {
 
 .title-label {
     -fx-text-fill: #007acc;
+    -fx-text-fill: #333333;
 }
 
 /* Styling for Buttons */
@@ -49,8 +50,9 @@ Button {
 
 /* Style for ChoiceBox */
 .choice-box {
-    -fx-background-color: #F6F4EB;
-    -fx-text-fill: #333333;
+/*    -fx-background-color: #F6F4EB;*/
+    -fx-background-color: #565b61;
+/*    -fx-text-fill: #333333;*/
 /*    -fx-padding: 5px;*/
 /*    -fx-pref-width: 150px;*/
 /*    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);*/

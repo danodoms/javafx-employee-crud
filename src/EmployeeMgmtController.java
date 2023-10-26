@@ -17,7 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import java.sql.*;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 /**
  * FXML Controller class
  *
@@ -78,12 +82,24 @@ public class EmployeeMgmtController implements Initializable {
     private TableView<Assignment> assignment_table;
     
     dbMethods dbMethods = new dbMethods();
+    @FXML
+    private ImageView themeToggle;
+    
+    private String lightMode = getClass().getResource("employeemgmt.css").toExternalForm();
+private String darkMode = getClass().getResource("darkMode.css").toExternalForm();
+
+Image lightModeIcon = new Image(getClass().getResource("icons8-sun-50.png").toExternalForm());
+Image darkModeIcon = new Image(getClass().getResource("icons8-moon-48.png").toExternalForm());
+
+
+    private boolean isLightMode = true;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        themeToggle.setImage(darkModeIcon);
         // TODO
         showUserTable();
         
@@ -146,6 +162,10 @@ public class EmployeeMgmtController implements Initializable {
         col_position.setCellValueFactory(new PropertyValueFactory<Assignment, String>("position"));
         col_department.setCellValueFactory(new PropertyValueFactory<Assignment, String>("department"));
         col_shift.setCellValueFactory(new PropertyValueFactory<Assignment, String>("shift"));
+        
+        
+        
+        
     }    
     
     
@@ -280,6 +300,52 @@ public String generateEmployeeFilterQuery() {
     
     return query;
 }
+
+//    @FXML
+//    private void switchTheme(MouseEvent event) {
+//        Scene scene = stage.getScene();
+//         scene.getStylesheets().clear();
+//        System.out.println("passs");
+//    }
+//
+//@FXML
+//private void switchTheme(MouseEvent event) {
+//
+//   Scene scene = themeToggle.getScene(); // Use your target control to get the Scene
+//        
+//        // Remove the first theme
+//        scene.getStylesheets().remove(lightMode); 
+//
+//        // Add the second theme
+//        scene.getStylesheets().add(darkMode); 
+//        
+//        
+//        System.out.println("passs");
+//}
+
+@FXML
+private void switchTheme(MouseEvent event) {
+    Scene scene = themeToggle.getScene();
+
+    if (scene != null) {
+        ObservableList<String> stylesheets = scene.getStylesheets();
+
+        if (isLightMode) {
+            // If light mode is currently applied, switch to night mode
+            scene.getStylesheets().remove(lightMode);
+            scene.getStylesheets().add(darkMode); 
+            themeToggle.setImage(lightModeIcon);
+            isLightMode = false;
+        } else {
+            // If night mode is currently applied, switch to light mode
+            scene.getStylesheets().remove(darkMode);
+            scene.getStylesheets().add(lightMode); 
+            themeToggle.setImage(darkModeIcon);
+            isLightMode = true;
+        }
+    }
+}
+
 
 
     

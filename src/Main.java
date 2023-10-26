@@ -33,6 +33,8 @@ public class Main extends Application {
         
         // Create a scene with the loaded FXML content
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("employeemgmt.css").toExternalForm());
+
         
         primaryStage.setTitle("Manage Employee");
         primaryStage.setScene(scene);

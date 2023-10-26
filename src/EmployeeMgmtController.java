@@ -208,14 +208,13 @@ private void updateRow(ActionEvent event) {
     Employee selectedItem = user_table.getSelectionModel().getSelectedItem();
     
     if (selectedItem != null) {
-        String query = "UPDATE employee SET " +
-            "fname = '" + fname_field.getText() + "', " +
-            "mname = '" + mname_field.getText() + "', " +
-            "lname = '" + lname_field.getText() + "', " +
-            "position = '" + position_field.getText() + "', " +
-            "shift = '" + shift_field.getText() + "', " +
-            "status = '" + status_field.getText() + "' " +
-            "WHERE id = " + selectedItem.getId();
+        String query = "UPDATE user SET " +
+            "user_fname = '" + fname_field.getText() + "', " +
+            "user_mname = '" + mname_field.getText() + "', " +
+            "user_lname = '" + lname_field.getText() + "', " +
+            "suffix = '" + suffix_field.getText() + "', " +
+            "user_type = '" + privilege_field.getText() + "'" +
+            "WHERE user_id = " + selectedItem.getId();
     
         dbMethods.executeQuery(query);
         showUserTable();
@@ -233,11 +232,12 @@ private void deactivate(ActionEvent event) {
     
     if (selectedItem != null) {
         int id = selectedItem.getId();
-        String query = "UPDATE employee SET status = 0 WHERE id = " + id;
+        String query = "UPDATE user SET user_status = 0 WHERE user_id = " + id;
     
         dbMethods.executeQuery(query);
         showUserTable();
         clearFields();
+        assignment_table.getItems().clear();
     } else {
         // Handle case when no row is selected or handle error.
         // You can show a message or perform other actions here.
@@ -256,8 +256,8 @@ public void showFilteredEmployeeTable(ActionEvent event){
 
 
 public String generateEmployeeFilterQuery() {
-    String query = "SELECT u.user_id, u.user_fname, u.user_mname, u.user_lname, u.suffix, p.position_name, d.department_name, s.shift_name, u.user_type, u.user_status from user u, assignment a, shift s, position p, department d where u.user_id = a.user_id AND s.shift_id = a.shift_id AND a.position_id = p.position_id AND p.department_id = d.department_id AND u.user_status = 1";
-    
+    //String query = "SELECT u.user_id, u.user_fname, u.user_mname, u.user_lname, u.suffix, p.position_name, d.department_name, s.shift_name, u.user_type, u.user_status from user u, assignment a, shift s, position p, department d where u.user_id = a.user_id AND s.shift_id = a.shift_id AND a.position_id = p.position_id AND p.department_id = d.department_id AND u.user_status = 1";
+    String query = "SELECT u.user_id, u.user_fname, u.user_mname, u.user_lname, u.suffix, p.position_name, d.department_name, s.shift_name, u.user_type, u.user_status from user u LEFT JOIN assignment a ON u.user_id = a.user_id left JOIN shift s ON a.shift_id = s.shift_id left JOIN position p ON p.position_id = a.position_id left JOIN department d ON d.department_id = p.department_id WHERE u.user_status = 1";
     String privilege = privilegeFilter_choiceBox.getValue() != null ? privilegeFilter_choiceBox.getValue() : "";
     String departmentId = departmentFilter_choiceBox.getValue() != null ? departmentFilter_choiceBox.getValue().getId() + "" : "";
     String shiftId = shiftFilter_choiceBox.getValue() != null ? shiftFilter_choiceBox.getValue().getId() + "" : "";

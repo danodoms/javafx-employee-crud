@@ -1,4 +1,6 @@
 # Employee Management (CRUD sample app with javaFX and MySQL)
+See photos and gifs below for project demo
+
 ![crud app light](https://github.com/danodoms/javafxAct5to8/assets/116992939/e07ba0a6-ccfe-4732-87c4-b84cbf67b624)
 ![crud app dark](https://github.com/danodoms/javafxAct5to8/assets/116992939/0ede5083-e8d3-4e8d-9a35-715abc2a17c4)
 

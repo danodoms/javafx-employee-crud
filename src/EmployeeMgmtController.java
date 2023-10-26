@@ -88,8 +88,8 @@ public class EmployeeMgmtController implements Initializable {
     private String lightMode = getClass().getResource("employeemgmt.css").toExternalForm();
 private String darkMode = getClass().getResource("darkMode.css").toExternalForm();
 
-Image lightModeIcon = new Image(getClass().getResource("icons8-sun-50.png").toExternalForm());
-Image darkModeIcon = new Image(getClass().getResource("icons8-moon-48.png").toExternalForm());
+Image lightModeIcon = new Image(getClass().getResource("icons8-sun-50-dark.png").toExternalForm());
+Image darkModeIcon = new Image(getClass().getResource("icons8-moon-48-light.png").toExternalForm());
 
 
     private boolean isLightMode = true;
@@ -99,7 +99,7 @@ Image darkModeIcon = new Image(getClass().getResource("icons8-moon-48.png").toEx
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        themeToggle.setImage(darkModeIcon);
+        themeToggle.setImage(lightModeIcon);
         // TODO
         showUserTable();
         
@@ -334,13 +334,13 @@ private void switchTheme(MouseEvent event) {
             // If light mode is currently applied, switch to night mode
             scene.getStylesheets().remove(lightMode);
             scene.getStylesheets().add(darkMode); 
-            themeToggle.setImage(lightModeIcon);
+            themeToggle.setImage(darkModeIcon);
             isLightMode = false;
         } else {
             // If night mode is currently applied, switch to light mode
             scene.getStylesheets().remove(darkMode);
             scene.getStylesheets().add(lightMode); 
-            themeToggle.setImage(darkModeIcon);
+            themeToggle.setImage(lightModeIcon);
             isLightMode = true;
         }
     }

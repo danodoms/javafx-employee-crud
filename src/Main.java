@@ -39,7 +39,6 @@ public class Main extends Application {
         primaryStage.setTitle("Manage Employee");
         primaryStage.setScene(scene);
         primaryStage.show();
-    
     }
 
     /**

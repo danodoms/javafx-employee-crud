@@ -13,12 +13,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="1062.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="870.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeMgmtController">
     <stylesheets>
         <URL value="@employeemgmt.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="user_table" layoutX="227.0" layoutY="91.0" onMouseClicked="#updateFields" prefHeight="332.0" prefWidth="451.0">
+      <TableView fx:id="user_table" layoutX="29.0" layoutY="72.0" onMouseClicked="#updateFields" prefHeight="290.0" prefWidth="451.0">
         <columns>
           <TableColumn fx:id="col_id" prefWidth="44.0" text="ID" />
           <TableColumn fx:id="col_fname" prefWidth="90.0" text="First Name" />
@@ -28,12 +28,12 @@
             <TableColumn fx:id="col_privilege" minWidth="1.0" prefWidth="69.0" text="Privilege" />
         </columns>
       </TableView>
-      <Label layoutX="27.0" layoutY="24.0" text="Manage Employee">
+      <Label layoutX="29.0" layoutY="30.0" text="Manage Employee">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="assignment_table" layoutX="693.0" layoutY="91.0" onMouseClicked="#updateFields" prefHeight="332.0" prefWidth="325.0">
+      <TableView fx:id="assignment_table" layoutX="505.0" layoutY="72.0" onMouseClicked="#updateFields" prefHeight="414.0" prefWidth="325.0">
          <columns>
             <TableColumn fx:id="col_assignment_id" prefWidth="44.0" text="ID" />
             <TableColumn fx:id="col_department" prefWidth="90.0" text="Department" />
@@ -41,7 +41,7 @@
             <TableColumn fx:id="col_shift" prefWidth="98.0" text="Shift" />
          </columns>
       </TableView>
-      <HBox layoutX="477.0" layoutY="59.0" prefHeight="25.0" prefWidth="201.0">
+      <HBox layoutX="279.0" layoutY="35.0" prefHeight="25.0" prefWidth="201.0">
          <children>
             <Label prefHeight="25.0" prefWidth="57.0" text="Privilege" textAlignment="CENTER">
                <padding>
@@ -54,7 +54,7 @@
             <ChoiceBox fx:id="privilegeFilter_choiceBox" prefHeight="25.0" prefWidth="127.0" />
          </children>
       </HBox>
-      <HBox layoutX="693.0" layoutY="59.0" prefHeight="25.0" prefWidth="325.0">
+      <HBox layoutX="505.0" layoutY="35.0" prefHeight="25.0" prefWidth="325.0">
          <children>
             <Label prefHeight="25.0" prefWidth="81.0" text="Department" textAlignment="CENTER">
                <HBox.margin>
@@ -76,110 +76,127 @@
             <ChoiceBox fx:id="shiftFilter_choiceBox" prefHeight="25.0" prefWidth="104.0" />
          </children>
       </HBox>
-      <HBox layoutX="14.0" layoutY="91.0" prefHeight="100.0" prefWidth="200.0">
+      <VBox layoutX="29.0" layoutY="381.0" prefHeight="111.0" prefWidth="451.0">
          <children>
-            <VBox prefHeight="315.0" prefWidth="153.0">
+            <HBox prefHeight="17.0" prefWidth="451.0" spacing="10.0">
                <children>
-                  <Label text="ID">
+                  <Label prefHeight="20.0" prefWidth="35.0" text="ID">
                      <padding>
                         <Insets top="3.0" />
                      </padding>
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
                   </Label>
-                  <Label text="First Name">
+                  <Label prefHeight="20.0" prefWidth="99.0" text="First Name">
                      <padding>
                         <Insets top="3.0" />
                      </padding>
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
                   </Label>
-                  <Label text="Middle Name">
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Last Name">
+                  <Label prefHeight="20.0" prefWidth="107.0" text="Middle Name">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
                      <padding>
                         <Insets top="3.0" />
                      </padding>
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="20.0" prefWidth="99.0" text="Last Name">
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
                   </Label>
                   <Label text="Suffix">
                      <padding>
                         <Insets top="3.0" />
                      </padding>
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="21.0" prefWidth="451.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="id_field" editable="false" prefHeight="25.0" prefWidth="44.0" promptText="ID">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="fname_field" prefHeight="25.0" prefWidth="112.0" promptText="First Name">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="mname_field" prefHeight="25.0" prefWidth="116.0" promptText="Middle Name">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="lname_field" prefHeight="25.0" prefWidth="109.0" promptText="Last Name">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="suffix_field" prefHeight="25.0" prefWidth="52.0" promptText="Suffix">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="16.0" prefWidth="451.0">
+               <children>
                   <Label text="Privilege">
                      <padding>
                         <Insets top="3.0" />
                      </padding>
-                     <VBox.margin>
-                        <Insets bottom="16.0" />
-                     </VBox.margin>
                   </Label>
                </children>
-            </VBox>
-            <VBox prefHeight="470.0" prefWidth="180.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="0.0" prefWidth="451.0" spacing="5.0">
                <children>
-                  <TextField fx:id="id_field" editable="false" promptText="ID">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="fname_field" promptText="First Name">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="mname_field" promptText="Middle Name">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="lname_field" promptText="Last Name">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="suffix_field" promptText="Suffix">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="privilege_field" promptText="Privilege">
+                  <TextField fx:id="privilege_field" prefHeight="30.0" prefWidth="308.0" promptText="Privilege">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </TextField>
-                  <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertRecord" prefHeight="35.0" prefWidth="243.0" text="Insert">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateRow" prefHeight="35.0" prefWidth="243.0" text="Update">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deactivate" prefHeight="32.0" prefWidth="243.0" text="Delete">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Button>
+                  <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertRecord" prefHeight="35.0" prefWidth="243.0" text="Insert" />
+                  <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateRow" prefHeight="35.0" prefWidth="243.0" text="Update" />
+                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deactivate" prefHeight="32.0" prefWidth="243.0" text="Delete" />
                </children>
-            </VBox>
+            </HBox>
          </children>
-      </HBox>
+      </VBox>
    </children>
 </AnchorPane>

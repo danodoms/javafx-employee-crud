@@ -4,6 +4,11 @@ See photos and gifs below for project demo
 Download link for Database File and Alternative Video Demo:
 [project_files.zip](https://github.com/danodoms/javafxAct5to8/files/13178820/project_files.zip)
 
+Submitted by:
+- Dominador G. Dano Jr.
+- Jessa Mae Roxas
+- Nicole Anne Cabantac
+
 ![crud app light](https://github.com/danodoms/javafxAct5to8/assets/116992939/e07ba0a6-ccfe-4732-87c4-b84cbf67b624)
 ![crud app dark](https://github.com/danodoms/javafxAct5to8/assets/116992939/0ede5083-e8d3-4e8d-9a35-715abc2a17c4)
 

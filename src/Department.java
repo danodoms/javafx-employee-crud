@@ -10,7 +10,7 @@
 public class Department {
     private int id;
     private String department_name;
-
+    
     public int getId() {
         return id;
     }
